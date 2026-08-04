@@ -61,7 +61,7 @@
         "test": "phpunit --configuration phpunit.xml.dist",
         "coverage": [
             "@putenv XDEBUG_MODE=coverage",
-            "phpunit --configuration phpunit.xml.dist --coverage-text"
+            "phpunit --configuration phpunit.xml.dist --coverage-text --coverage-clover coverage.xml"
         ],
         "analyse": "phpstan analyse --configuration phpstan.neon.dist --no-progress",
         "cs": "phpcs --standard=phpcs.xml.dist",
