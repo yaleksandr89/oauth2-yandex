@@ -1,6 +1,6 @@
 {
     "name": "yaleksandr89/oauth2-yandex",
-    "description": "Modern Yandex ID OAuth 2.0 provider client for league/oauth2-client.",
+    "description": "Yandex ID OAuth 2.0 provider client for league/oauth2-client.",
     "homepage": "https://github.com/yaleksandr89/oauth2-yandex",
     "keywords": [
         "oauth",

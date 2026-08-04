@@ -1,20 +1,20 @@
-# Интеграция с Symfony и KnpUOAuth2ClientBundle
+# Symfony and KnpUOAuth2ClientBundle integration
 
-## Выберите язык
+## Choose a language
 
 | Русский | English | Español | 中文 | Français | Deutsch |
 |---|---|---|---|---|---|
-| **Выбран** | [English](./symfony-knpu-oauth2-client-bundle_en.md) | [Español](./symfony-knpu-oauth2-client-bundle_es.md) | [中文](./symfony-knpu-oauth2-client-bundle_zh.md) | [Français](./symfony-knpu-oauth2-client-bundle_fr.md) | [Deutsch](./symfony-knpu-oauth2-client-bundle_de.md) |
+| [Русский](./symfony-knpu-oauth2-client-bundle.md) | **Selected** | [Español](./symfony-knpu-oauth2-client-bundle_es.md) | [中文](./symfony-knpu-oauth2-client-bundle_zh.md) | [Français](./symfony-knpu-oauth2-client-bundle_fr.md) | [Deutsch](./symfony-knpu-oauth2-client-bundle_de.md) |
 
-[← Вернуться к README](../../README.md)
+[← Back to README](../readme/README_en.md)
 
-Инструкция показывает использование пакета в Symfony через
+This guide shows how to use the package in Symfony through
 [`knpuniversity/oauth2-client-bundle`](https://github.com/knpuniversity/oauth2-client-bundle).
 
-## Конфигурация клиента
+## Client configuration
 
-Пакет подключается как generic provider. Значение `type: yandex` относится
-к другому provider-пакету и здесь не используется.
+The package is configured as a generic provider. The `type: yandex` value belongs
+to another provider package and is not used here.
 
 ```yaml
 # config/packages/knpu_oauth2_client.yaml
@@ -32,16 +32,16 @@ knpu_oauth2_client:
             use_state: true
 ```
 
-Локальные значения:
+Local values:
 
 ```dotenv
 OAUTH_YANDEX_CLIENT_ID=your-client-id
 OAUTH_YANDEX_CLIENT_SECRET=your-client-secret
 ```
 
-Не добавляйте `.env.local` и реальные OAuth-реквизиты в репозиторий.
+Do not commit `.env.local` or real OAuth credentials.
 
-## Запуск авторизации
+## Starting authorization
 
 ```php
 <?php
@@ -66,14 +66,14 @@ final class YandexController extends AbstractController
     #[Route('/connect/yandex/check', name: 'connect_yandex_check')]
     public function check(): void
     {
-        // Callback обрабатывается authenticator или отдельным сервисом приложения.
+        // The callback is handled by the application's authenticator or service.
     }
 }
 ```
 
-## Получение токена и профиля
+## Retrieving the token and profile
 
-В callback или authenticator:
+Inside a callback or authenticator:
 
 ```php
 <?php
@@ -84,14 +84,14 @@ use Yaleksandr\OAuth2\Client\Provider\YandexResourceOwner;
 
 $client = $clientRegistry->getClient('yandex_main');
 
-// 1. Bundle проверяет callback и получает access token.
+// 1. The bundle validates the callback and obtains an access token.
 $accessToken = $client->getAccessToken();
 
-// 2. Provider запрашивает профиль Yandex ID.
+// 2. The provider requests the Yandex ID profile.
 /** @var YandexResourceOwner $owner */
 $owner = $client->fetchUserFromToken($accessToken);
 
-// 3. Приложение использует типизированные поля профиля.
+// 3. The application uses the typed profile fields.
 $email = $owner->getDefaultEmail();
 
 if ($email === null) {
@@ -116,15 +116,15 @@ $profile = [
 use_state: true
 ```
 
-Bundle использует `state` для проверки OAuth callback. Не отключайте эту проверку
-без отдельной архитектурной причины.
+The bundle uses `state` to validate the OAuth callback. Do not disable this check
+without a separate architectural reason.
 
 ## PKCE
 
-Сам provider поддерживает PKCE через API `league/oauth2-client`.
-При использовании bundle приложение должно сохранить PKCE code перед redirect
-и восстановить его перед запросом токена. Готовая схема зависит от того,
-где именно приложение обрабатывает callback и хранит session state.
+The provider supports PKCE through the `league/oauth2-client` API.
+When the bundle is used, the application must store the PKCE code before redirect
+and restore it before requesting the token. The exact implementation depends on
+where the callback is handled and where session state is stored.
 
-Нативный пример с PKCE приведён в
-[отдельной инструкции](../guides/native-usage.md).
+A native PKCE example is available in the
+[separate guide](../guides/native-usage_en.md).

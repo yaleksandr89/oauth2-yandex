@@ -1,5 +1,11 @@
 # Регистрация приложения в Яндекс OAuth
 
+## Выберите язык
+
+| Русский | English | Español | 中文 | Français | Deutsch |
+|---|---|---|---|---|---|
+| **Выбран** | [English](./yandex-oauth-application_en.md) | [Español](./yandex-oauth-application_es.md) | [中文](./yandex-oauth-application_zh.md) | [Français](./yandex-oauth-application_fr.md) | [Deutsch](./yandex-oauth-application_de.md) |
+
 [← Вернуться к README](../../README.md)
 
 ## Создание приложения

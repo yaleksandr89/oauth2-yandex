@@ -12,7 +12,7 @@
 <p align="center">
   <img
     src="docs/assets/oauth2-yandex-readme-cover.png"
-    alt="OAuth2 Yandex — provider-клиент Yandex ID для league/oauth2-client"
+    alt="OAuth2 Yandex — Yandex ID provider client for league/oauth2-client"
     width="100%"
   >
 </p>
@@ -123,9 +123,7 @@ $provider = new Yandex([
   "last_name": "Петров",
   "sex": "male",
   "default_email": "ivan.petrov@example.com",
-  "emails": [
-    "ivan.petrov@example.com"
-  ],
+  "emails": ["ivan.petrov@example.com"],
   "birthday": "0000-12-23",
   "default_avatar_id": "12345/example-avatar-id",
   "is_avatar_empty": false,
@@ -146,5 +144,5 @@ $provider = new Yandex([
 
 <p align="center">
   Если библиотека помогла решить задачу, поставьте звезду на GitHub — так проект будет
-  проще найти другим разработчикам.
+проще найти другим разработчикам. 🤘
 </p>

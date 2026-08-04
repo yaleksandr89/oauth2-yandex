@@ -1,5 +1,11 @@
 # Справочник публичного API
 
+## Выберите язык
+
+| Русский | English | Español | 中文 | Français | Deutsch |
+|---|---|---|---|---|---|
+| **Выбран** | [English](./api_en.md) | [Español](./api_es.md) | [中文](./api_zh.md) | [Français](./api_fr.md) | [Deutsch](./api_de.md) |
+
 [← Вернуться к README](../../README.md)
 
 ## `Yandex`

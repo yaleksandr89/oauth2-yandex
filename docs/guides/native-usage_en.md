@@ -1,15 +1,15 @@
-# Нативное использование
+# Native usage
 
-## Выберите язык
+## Choose a language
 
 | Русский | English | Español | 中文 | Français | Deutsch |
 |---|---|---|---|---|---|
-| **Выбран** | [English](./native-usage_en.md) | [Español](./native-usage_es.md) | [中文](./native-usage_zh.md) | [Français](./native-usage_fr.md) | [Deutsch](./native-usage_de.md) |
+| [Русский](./native-usage.md) | **Selected** | [Español](./native-usage_es.md) | [中文](./native-usage_zh.md) | [Français](./native-usage_fr.md) | [Deutsch](./native-usage_de.md) |
 
-[← Вернуться к README](../../README.md)
+[← Back to README](../readme/README_en.md)
 
-Пример использует `league/oauth2-client` напрямую, без Symfony, Laravel
-и других фреймворков.
+This example uses `league/oauth2-client` directly, without Symfony, Laravel,
+or another framework.
 
 ## Authorization Code Flow
 
@@ -22,7 +22,7 @@ use Yaleksandr\OAuth2\Client\ValueObject\YandexAvatarSize;
 
 session_start();
 
-// 1. Создаём provider.
+// 1. Create the provider.
 $provider = new Yandex([
     'clientId' => 'fake-yandex-client-id',
     'clientSecret' => 'fake-yandex-client-secret',
@@ -33,7 +33,7 @@ $provider = new Yandex([
 $isCallback = isset($_GET['code']) || isset($_GET['error']);
 
 if (!$isCallback) {
-    // 2. Первый запрос: формируем URL авторизации.
+    // 2. Build the authorization URL.
     $authorizationUrl = $provider->getAuthorizationUrl([
         'scope' => [
             'login:info',
@@ -43,7 +43,7 @@ if (!$isCallback) {
         ],
     ]);
 
-    // 3. Сохраняем state и PKCE code до возврата пользователя.
+    // 3. Store state and the PKCE code until the user returns.
     $state = $provider->getState();
     $pkceCode = $provider->getPkceCode();
 
@@ -59,13 +59,13 @@ if (!$isCallback) {
     $_SESSION['oauth2state'] = $state;
     $_SESSION['oauth2pkceCode'] = $pkceCode;
 
-    // 4. Отправляем пользователя на страницу Yandex OAuth.
+    // 4. Redirect the user to Yandex OAuth.
     header('Location: ' . $authorizationUrl);
     exit;
 }
 
-// 5. Пользователь вернулся в callback.
-// Сначала достаём сохранённые значения и удаляем их из сессии.
+// 5. The user returned to the callback.
+// Read the saved values and remove them from the session.
 $expectedState = $_SESSION['oauth2state'] ?? null;
 $pkceCode = $_SESSION['oauth2pkceCode'] ?? null;
 
@@ -73,7 +73,7 @@ unset($_SESSION['oauth2state'], $_SESSION['oauth2pkceCode']);
 
 $receivedState = $_GET['state'] ?? null;
 
-// 6. Проверяем state и отклоняем поддельный callback.
+// 6. Validate state and reject a forged callback.
 if (
     !is_string($receivedState)
     || !is_string($expectedState)
@@ -82,7 +82,7 @@ if (
     throw new RuntimeException('Invalid OAuth state.');
 }
 
-// 7. Обрабатываем отказ пользователя или ошибку Yandex.
+// 7. Handle user denial or an error returned by Yandex.
 if (isset($_GET['error'])) {
     $error = is_string($_GET['error']) ? $_GET['error'] : 'unknown_error';
 
@@ -99,19 +99,19 @@ if (!is_string($pkceCode) || $pkceCode === '') {
     throw new RuntimeException('PKCE code is missing.');
 }
 
-// 8. Восстанавливаем PKCE code перед обменом authorization code на токен.
+// 8. Restore the PKCE code before exchanging the authorization code.
 $provider->setPkceCode($pkceCode);
 
 try {
-    // 9. Обмениваем authorization code на access token.
+    // 9. Exchange the authorization code for an access token.
     $token = $provider->getAccessToken('authorization_code', [
         'code' => $code,
     ]);
 
-    // 10. Запрашиваем профиль пользователя.
+    // 10. Request the user profile.
     $owner = $provider->getResourceOwner($token);
 
-    // 11. Используем типизированные данные профиля.
+    // 11. Use the typed profile data.
     $profile = [
         'id' => $owner->getId(),
         'login' => $owner->getLogin(),
@@ -124,16 +124,16 @@ try {
     ];
 } catch (IdentityProviderException $exception) {
     throw new RuntimeException(
-        'Не удалось завершить авторизацию через Yandex ID.',
+        'Unable to complete authorization through Yandex ID.',
         previous: $exception,
     );
 }
 ```
 
-Yandex поддерживает PKCE с методами `S256` и `plain`; используйте `S256`.
-PKCE code должен быть сохранён между созданием authorization URL и запросом токена.
+Yandex supports PKCE with `S256` and `plain`; use `S256`.
+The PKCE code must be stored between authorization URL creation and the token request.
 
-## Дополнительные параметры авторизации
+## Additional authorization parameters
 
 ```php
 $authorizationUrl = $provider->getAuthorizationUrl([
@@ -144,16 +144,16 @@ $authorizationUrl = $provider->getAuthorizationUrl([
 ]);
 ```
 
-| Параметр | Назначение |
+| Parameter | Purpose |
 |---|---|
-| `scope` | основные запрашиваемые права |
-| `optional_scope` | дополнительные права, от которых пользователь может отказаться |
-| `login_hint` | подсказка логина или email |
-| `force_confirm` | повторный показ выбора аккаунта и подтверждения доступа |
+| `scope` | required permissions |
+| `optional_scope` | additional permissions the user may decline |
+| `login_hint` | login or email hint |
+| `force_confirm` | show account selection and permission confirmation again |
 
-Права должны входить в список, разрешённый в настройках OAuth-приложения.
+Requested permissions must be enabled in the OAuth application settings.
 
-## Обновление токена
+## Refreshing a token
 
 ```php
 $refreshToken = $token->getRefreshToken();
@@ -167,15 +167,15 @@ $updatedToken = $provider->getAccessToken('refresh_token', [
 ]);
 ```
 
-Yandex может вернуть новый refresh token. Если он присутствует, сохраняйте новое
-значение вместо предыдущего.
+Yandex may return a new refresh token. When present, store the new value
+instead of the previous one.
 
-## Безопасность
+## Security
 
-Не выводите и не сохраняйте в логах:
+Do not output or write the following values to logs:
 
 - `Client Secret`;
 - authorization code;
 - access token;
 - refresh token;
-- полный профиль реального пользователя.
+- a complete real user profile.
