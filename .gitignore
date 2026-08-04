@@ -1,0 +1,14 @@
+###> Composer ###
+/composer.lock
+/vendor/
+###< Composer ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+/.phpunit.cache/
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> Jetbrains ###
+/.idea/
+###< Jetbrains ###
