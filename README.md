@@ -9,6 +9,14 @@
 [![League OAuth2 Client](https://img.shields.io/badge/league%2Foauth2--client-%5E2.9-4F5B93.svg?style=flat-square)](https://oauth2-client.thephpleague.com/)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
+<p align="center">
+  <img
+    src="docs/assets/oauth2-yandex-readme-cover.png"
+    alt="OAuth2 Yandex — provider-клиент Yandex ID для league/oauth2-client"
+    width="100%"
+  >
+</p>
+
 ## Выберите язык
 
 | Русский | English | Español | 中文 | Français | Deutsch |
