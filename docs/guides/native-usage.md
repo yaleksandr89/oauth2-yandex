@@ -5,8 +5,6 @@
 Пример использует `league/oauth2-client` напрямую, без Symfony, Laravel
 и других фреймворков.
 
-В коде указаны вымышленные OAuth-реквизиты. В реальном приложении загружайте
-их из конфигурации или переменных окружения.
 
 ## Authorization Code Flow
 
@@ -20,9 +18,8 @@ use Yaleksandr\OAuth2\Client\ValueObject\YandexAvatarSize;
 session_start();
 
 // 1. Создаём provider.
-// В реальном приложении значения нужно получать из конфигурации.
 $provider = new Yandex([
-    'clientId' => '00000000000000000000000000000000',
+    'clientId' => 'fake-yandex-client-id',
     'clientSecret' => 'fake-yandex-client-secret',
     'redirectUri' => 'https://example.com/oauth/yandex/callback',
     'pkceMethod' => Yandex::PKCE_METHOD_S256,

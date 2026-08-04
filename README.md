@@ -42,14 +42,13 @@ composer require yaleksandr89/oauth2-yandex
 use Yaleksandr\OAuth2\Client\Provider\Yandex;
 
 $provider = new Yandex([
-    'clientId' => '00000000000000000000000000000000',
+    'clientId' => 'fake-yandex-client-id',
     'clientSecret' => 'fake-yandex-client-secret',
     'redirectUri' => 'https://example.com/oauth/yandex/callback',
 ]);
 ```
 
-В примере используются вымышленные реквизиты. В реальном приложении храните
-`Client ID`, `Client Secret` и Redirect URI в конфигурации или переменных окружения.
+Храните `Client ID` и `Client Secret` в конфигурации или переменных окружения.
 Не добавляйте `Client Secret` в репозиторий.
 
 ## Использование
@@ -81,27 +80,18 @@ $provider = new Yandex([
 Размеры `YandexAvatarSize` соответствуют
 [документации Yandex ID о данных пользователя](https://yandex.com/dev/id/doc/ru/user-information).
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th>PHP case</th>
-      <th>Значение Yandex</th>
-      <th>Размер</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td><code>Size28</code></td><td><code>islands-small</code></td><td>28×28</td></tr>
-    <tr><td><code>Size34</code></td><td><code>islands-34</code></td><td>34×34</td></tr>
-    <tr><td><code>Size42</code></td><td><code>islands-middle</code></td><td>42×42</td></tr>
-    <tr><td><code>Size50</code></td><td><code>islands-50</code></td><td>50×50</td></tr>
-    <tr><td><code>Size56</code></td><td><code>islands-retina-small</code></td><td>56×56</td></tr>
-    <tr><td><code>Size68</code></td><td><code>islands-68</code></td><td>68×68</td></tr>
-    <tr><td><code>Size75</code></td><td><code>islands-75</code></td><td>75×75</td></tr>
-    <tr><td><code>Size84</code></td><td><code>islands-retina-middle</code></td><td>84×84</td></tr>
-    <tr><td><code>Size100</code></td><td><code>islands-retina-50</code></td><td>100×100</td></tr>
-    <tr><td><code>Size200</code></td><td><code>islands-200</code></td><td>200×200</td></tr>
-  </tbody>
-</table>
+| PHP case | Значение Yandex | Размер |
+|---|---|---|
+| `Size28` | `islands-small` | 28×28 |
+| `Size34` | `islands-34` | 34×34 |
+| `Size42` | `islands-middle` | 42×42 |
+| `Size50` | `islands-50` | 50×50 |
+| `Size56` | `islands-retina-small` | 56×56 |
+| `Size68` | `islands-68` | 68×68 |
+| `Size75` | `islands-75` | 75×75 |
+| `Size84` | `islands-retina-middle` | 84×84 |
+| `Size100` | `islands-retina-50` | 100×100 |
+| `Size200` | `islands-200` | 200×200 |
 
 `islands-*` — служебные значения размера, которые Yandex использует в URL CDN
 аватаров; PHP cases названы по фактическому размеру изображения.
