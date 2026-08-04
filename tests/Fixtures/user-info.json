@@ -1,0 +1,27 @@
+{
+    "first_name": "Иван",
+    "last_name": "Иванов",
+    "display_name": "ivan",
+    "emails": [
+        "test@yandex.ru",
+        "",
+        null,
+        42,
+        "other-test@yandex.ru"
+    ],
+    "default_email": "test@yandex.ru",
+    "default_phone": {
+        "id": 12345678,
+        "number": "+79037659418"
+    },
+    "real_name": "Иван Иванов",
+    "is_avatar_empty": false,
+    "birthday": "0000-12-23",
+    "default_avatar_id": "131652443",
+    "login": "ivan",
+    "old_social_login": "uid-mmzxrnry",
+    "sex": "male",
+    "id": "1000034426",
+    "client_id": "4760187d81bc4b7799476b42b5103713",
+    "psuid": "1.AAceCw.test"
+}
