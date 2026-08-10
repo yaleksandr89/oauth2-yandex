@@ -1,0 +1,54 @@
+name: Feature request / Предложить улучшение
+description: Suggest an improvement for the OAuth2 Yandex package / Предложить улучшение пакета OAuth2 Yandex
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting an improvement. Describe the user problem first; a proposal does not guarantee acceptance. / Спасибо за предложение. Сначала опишите задачу пользователя; предложение не гарантирует принятие.
+
+        The package is intentionally a framework-agnostic Yandex ID provider for league/oauth2-client. / Пакет намеренно остаётся framework-agnostic provider-клиентом Yandex ID для league/oauth2-client.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case / Проблема
+      description: What problem are you trying to solve, and who encounters it? / Какую проблему вы хотите решить и кто с ней сталкивается?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution / Предлагаемое решение
+      description: Describe the behavior or outcome you would like. / Опишите желаемое поведение или результат.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Affected contract / Затронутый контракт
+      description: If known, identify authorization, token handling, user profile, Yandex ID behavior, league/oauth2-client compatibility, or documentation. / Если известно, укажите авторизацию, работу с токенами, профиль, поведение Yandex ID, совместимость с league/oauth2-client или документацию.
+
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility considerations / Совместимость
+      description: Describe any expected impact on the public API, SemVer, Yandex ID contract, or league/oauth2-client compatibility. / Опишите ожидаемое влияние на публичный API, SemVer, контракт Yandex ID или совместимость с league/oauth2-client.
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives / Альтернативы
+      description: Describe any workarounds or alternatives you considered. / Опишите рассмотренные обходные пути или альтернативы.
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmation / Подтверждение
+      options:
+        - label: I searched existing Issues for the same request. / Я проверил(а) существующие Issues на наличие такого запроса.
+          required: true

@@ -1,0 +1,99 @@
+name: Bug report / Сообщить об ошибке
+description: Report a reproducible problem with the OAuth2 Yandex package / Сообщить о воспроизводимой проблеме пакета OAuth2 Yandex
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a problem. / Спасибо, что нашли время сообщить о проблеме.
+
+        Do not publish Client Secrets, authorization codes, access tokens, refresh tokens, or real user data. / Не публикуйте Client Secret, authorization code, access token, refresh token или реальные пользовательские данные.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area / Затронутая область
+      description: Which part of the package is affected? / Какая часть пакета затронута?
+      options:
+        - Authorization URL or parameters / URL или параметры авторизации
+        - Token exchange or refresh / Получение или обновление токена
+        - User profile / Профиль пользователя
+        - OAuth error handling / Обработка OAuth-ошибок
+        - league/oauth2-client compatibility / Совместимость с league/oauth2-client
+        - Application or framework integration / Интеграция в приложение или фреймворк
+        - Documentation / Документация
+        - Other package behavior / Другое поведение пакета
+    validations:
+      required: true
+
+  - type: input
+    id: php-version
+    attributes:
+      label: PHP version / Версия PHP
+      description: Specify the exact PHP version for runtime/provider problems; it may be omitted for documentation-only issues. / Для runtime/provider-проблем укажите точную версию PHP; для ошибки только в документации поле можно оставить пустым.
+      placeholder: "8.3.x, 8.4.x or 8.5.x / 8.3.x, 8.4.x или 8.5.x"
+
+  - type: input
+    id: package-version
+    attributes:
+      label: Package version / Версия пакета
+      description: Specify the installed version or commit. / Укажите установленную версию или коммит.
+      placeholder: "1.x.y or abc1234 / 1.x.y или abc1234"
+    validations:
+      required: true
+
+  - type: input
+    id: league-version
+    attributes:
+      label: league/oauth2-client version / Версия league/oauth2-client
+      description: Specify the installed league/oauth2-client version when the problem affects OAuth behavior or integration. / Укажите установленную версию league/oauth2-client, если проблема относится к OAuth-поведению или интеграции.
+      placeholder: "2.9.x"
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment / Окружение
+      description: If relevant, include the framework, bundle, HTTP client, or application context. The package itself is framework-agnostic. / Если важно, укажите фреймворк, bundle, HTTP client или контекст приложения. Сам пакет не зависит от фреймворка.
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction / Воспроизведение
+      description: Provide minimal code or steps that reproduce the problem using synthetic credentials and sanitized data. / Приведите минимальный код или шаги воспроизведения с вымышленными credentials и очищенными данными.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result / Ожидаемый результат
+      description: What did you expect to happen? / Что должно было произойти?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result / Фактический результат
+      description: What happened instead? / Что произошло на самом деле?
+    validations:
+      required: true
+
+  - type: textarea
+    id: sanitized-output
+    attributes:
+      label: Sanitized details / Очищенные данные
+      description: Include only request, response, or exception details with secrets, tokens, authorization codes, and personal data removed. / Добавляйте только данные запроса, ответа или исключения, из которых удалены секреты, токены, authorization code и персональные данные.
+      render: text
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations / Подтверждения
+      options:
+        - label: I removed Client Secrets, authorization codes, tokens, and real user data. / Я удалил(а) Client Secret, authorization code, токены и реальные пользовательские данные.
+          required: true
+        - label: I searched existing Issues for the same problem. / Я проверил(а) существующие Issues на наличие такой проблемы.
+          required: true
