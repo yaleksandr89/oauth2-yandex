@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security issue / Проблема безопасности
+    url: https://github.com/yaleksandr89/oauth2-yandex/security/policy
+    about: Do not publish Client Secrets, authorization codes, tokens, real user data, or exploit details; read the security policy. / Не публикуйте Client Secret, authorization code, токены, реальные пользовательские данные или детали эксплуатации; прочитайте политику безопасности.

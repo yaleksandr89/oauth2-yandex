@@ -4,7 +4,7 @@
 
 | Русский | English | Español | 中文 | Français | Deutsch |
 |---|---|---|---|---|---|
-| [Русский](../../SECURITY.md) | [English](./SECURITY_en.md) | **Seleccionado** | [中文](./SECURITY_zh.md) | [Français](./SECURITY_fr.md) | [Deutsch](./SECURITY_de.md) |
+| [Русский](../../.github/SECURITY.md) | [English](./SECURITY_en.md) | **Seleccionado** | [中文](./SECURITY_zh.md) | [Français](./SECURITY_fr.md) | [Deutsch](./SECURITY_de.md) |
 
 ## Versiones compatibles
 
