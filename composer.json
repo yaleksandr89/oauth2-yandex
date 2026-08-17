@@ -14,6 +14,7 @@
     "authors": [
         {
             "name": "Александр Юрченко",
+            "email": "y.aleksandr89@yandex.ru",
             "homepage": "https://github.com/yaleksandr89",
             "role": "Developer"
         }
@@ -45,7 +46,7 @@
         "guzzlehttp/guzzle": "^7.9",
         "phpstan/phpstan": "^2.2",
         "phpunit/phpunit": "^12.5",
-        "squizlabs/php_codesniffer": "^4.0"
+        "squizlabs/php_codesniffer": "^4.0.2"
     },
     "autoload": {
         "psr-4": {
@@ -64,11 +65,12 @@
             "phpunit --configuration phpunit.xml.dist --coverage-text --coverage-clover coverage.xml"
         ],
         "analyse": "phpstan analyse --configuration phpstan.neon.dist --no-progress",
-        "cs": "phpcs --standard=phpcs.xml.dist",
+        "cs:check": "phpcs --standard=phpcs.xml.dist",
+        "cs:fix": "phpcbf --standard=phpcs.xml.dist",
         "check": [
             "@composer validate --strict",
             "@composer audit",
-            "@cs",
+            "@cs:check",
             "@analyse",
             "@test"
         ]

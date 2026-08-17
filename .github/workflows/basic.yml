@@ -44,7 +44,7 @@ jobs:
         run: composer audit
 
       - name: Check code style
-        run: composer cs
+        run: composer cs:check
 
       - name: Run static analysis
         run: composer analyse
