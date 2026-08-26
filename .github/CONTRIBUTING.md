@@ -4,7 +4,7 @@
 
 | Русский | English | Español | 中文 | Français | Deutsch |
 |---|---|---|---|---|---|
-| **Русский** | [English](../docs/contributing/CONTRIBUTING_en.md) | [Español](../docs/contributing/CONTRIBUTING_es.md) | [中文](../docs/contributing/CONTRIBUTING_zh.md) | [Français](../docs/contributing/CONTRIBUTING_fr.md) | [Deutsch](../docs/contributing/CONTRIBUTING_de.md) |
+| **Русский** | [English](https://github.com/yaleksandr89/oauth2-yandex/blob/master/docs/contributing/CONTRIBUTING_en.md) | [Español](https://github.com/yaleksandr89/oauth2-yandex/blob/master/docs/contributing/CONTRIBUTING_es.md) | [中文](https://github.com/yaleksandr89/oauth2-yandex/blob/master/docs/contributing/CONTRIBUTING_zh.md) | [Français](https://github.com/yaleksandr89/oauth2-yandex/blob/master/docs/contributing/CONTRIBUTING_fr.md) | [Deutsch](https://github.com/yaleksandr89/oauth2-yandex/blob/master/docs/contributing/CONTRIBUTING_de.md) |
 
 Спасибо за желание улучшить OAuth2 Yandex. Это руководство поможет подготовить изменение, которое проще проверить, безопасно интегрировать и поддерживать.
 
@@ -12,7 +12,7 @@
 
 - О воспроизводимой ошибке сообщите через GitHub Issue.
 - Для новой возможности или улучшения создайте feature request.
-- При проблеме безопасности следуйте [политике безопасности](SECURITY.md) и не публикуйте чувствительные детали.
+- При проблеме безопасности следуйте [политике безопасности](https://github.com/yaleksandr89/oauth2-yandex/security/policy) и не публикуйте чувствительные детали.
 - Крупные или нарушающие обратную совместимость изменения публичного API, OAuth-контракта Yandex ID либо совместимости с `league/oauth2-client` сначала согласуйте с сопровождающим через Issue.
 
 ## Контракт пакета
