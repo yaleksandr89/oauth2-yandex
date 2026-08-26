@@ -25,8 +25,8 @@
 `yaleksandr89/oauth2-yandex` — provider-клиент Yandex ID для
 [`league/oauth2-client`](https://oauth2-client.thephpleague.com/).
 
-Пакет реализует OAuth 2.0 Authorization Code Flow, получение и обновление токенов,
-а также загрузку профиля пользователя через API Yandex ID.
+Пакет поддерживает OAuth 2.0 Authorization Code Flow, получение и обновление токенов,
+а также получение профиля пользователя через API Yandex ID.
 
 ## Перед началом
 
