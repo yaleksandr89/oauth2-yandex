@@ -21,7 +21,7 @@
 https://example.com/oauth/yandex/callback
 ```
 
-Scheme, host, port и path должны совпадать с callback вашего приложения.
+Схема, хост, порт и путь Redirect URI должны совпадать с callback вашего приложения.
 
 ## Права доступа
 
