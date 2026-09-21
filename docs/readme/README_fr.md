@@ -8,13 +8,7 @@
 [![CI](https://github.com/yaleksandr89/oauth2-yandex/actions/workflows/basic.yml/badge.svg)](https://github.com/yaleksandr89/oauth2-yandex/actions/workflows/basic.yml)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](../../LICENSE)
 
-<p align="center">
-  <img
-    src="../assets/oauth2-yandex-readme-cover.png"
-    alt="OAuth2 Yandex — Yandex ID provider client for league/oauth2-client"
-    width="100%"
-  >
-</p>
+![OAuth2 Yandex — Yandex ID provider client for league/oauth2-client](../assets/oauth2-yandex-readme-cover.png)
 
 ## Choisir une langue
 
