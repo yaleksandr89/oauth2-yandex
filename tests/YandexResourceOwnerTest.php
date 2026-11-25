@@ -179,13 +179,13 @@ final class YandexResourceOwnerTest extends TestCase
         self::assertSame(12345678, $phone->getId());
         self::assertSame('+79037659418', $phone->getNumber());
 
-        foreach (
-            [
-                ['id' => '12345678', 'number' => '+79037659418'],
-                ['id' => 12345678, 'number' => ''],
-                ['id' => 12345678],
-            ] as $malformed
-        ) {
+        $malformedPhones = [
+            ['id' => '12345678', 'number' => '+79037659418'],
+            ['id' => 12345678, 'number' => ''],
+            ['id' => 12345678],
+        ];
+
+        foreach ($malformedPhones as $malformed) {
             try {
                 YandexPhone::fromArray($malformed);
                 self::fail('Malformed phone payload was accepted.');
@@ -210,19 +210,21 @@ final class YandexResourceOwnerTest extends TestCase
 
     public function testAvatarEnumContainsExactDocumentedNamesValuesAndSizes(): void
     {
+        $expected = [
+            'Size28' => ['islands-small', '28x28'],
+            'Size34' => ['islands-34', '34x34'],
+            'Size42' => ['islands-middle', '42x42'],
+            'Size50' => ['islands-50', '50x50'],
+            'Size56' => ['islands-retina-small', '56x56'],
+            'Size68' => ['islands-68', '68x68'],
+            'Size75' => ['islands-75', '75x75'],
+            'Size84' => ['islands-retina-middle', '84x84'],
+            'Size100' => ['islands-retina-50', '100x100'],
+            'Size200' => ['islands-200', '200x200'],
+        ];
+
         self::assertSame(
-            [
-                'Size28' => ['islands-small', '28x28'],
-                'Size34' => ['islands-34', '34x34'],
-                'Size42' => ['islands-middle', '42x42'],
-                'Size50' => ['islands-50', '50x50'],
-                'Size56' => ['islands-retina-small', '56x56'],
-                'Size68' => ['islands-68', '68x68'],
-                'Size75' => ['islands-75', '75x75'],
-                'Size84' => ['islands-retina-middle', '84x84'],
-                'Size100' => ['islands-retina-50', '100x100'],
-                'Size200' => ['islands-200', '200x200'],
-            ],
+            $expected,
             array_reduce(
                 YandexAvatarSize::cases(),
                 static function (array $sizes, YandexAvatarSize $size): array {

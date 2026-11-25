@@ -1,11 +1,11 @@
 # OAuth2 Yandex
 
 [![Source Code](https://img.shields.io/badge/source-yaleksandr89%2Foauth2--yandex-blue.svg?style=flat-square)](https://github.com/yaleksandr89/oauth2-yandex)
+[![CI](https://github.com/yaleksandr89/oauth2-yandex/actions/workflows/ci.yml/badge.svg)](https://github.com/yaleksandr89/oauth2-yandex/actions/workflows/ci.yml)
 [![Latest Stable Version](https://img.shields.io/packagist/v/yaleksandr89/oauth2-yandex.svg?style=flat-square)](https://packagist.org/packages/yaleksandr89/oauth2-yandex)
 [![Total Downloads](https://img.shields.io/packagist/dt/yaleksandr89/oauth2-yandex.svg?style=flat-square)](https://packagist.org/packages/yaleksandr89/oauth2-yandex)
 [![PHP](https://img.shields.io/badge/PHP-%5E8.3-777BB4.svg?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
 [![league/oauth2-client](https://img.shields.io/badge/league%2Foauth2--client-%5E2.9-4F5B93.svg?style=flat-square)](https://oauth2-client.thephpleague.com/)
-[![CI](https://github.com/yaleksandr89/oauth2-yandex/actions/workflows/basic.yml/badge.svg)](https://github.com/yaleksandr89/oauth2-yandex/actions/workflows/basic.yml)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 ![OAuth2 Yandex — Yandex ID provider client for league/oauth2-client](docs/assets/oauth2-yandex-readme-cover.png)
@@ -14,7 +14,7 @@
 
 | Русский | English | Español | 中文 | Français | Deutsch |
 |---|---|---|---|---|---|
-| **Выбран** | [English](./docs/readme/README_en.md) | [Español](./docs/readme/README_es.md) | [中文](./docs/readme/README_zh.md) | [Français](./docs/readme/README_fr.md) | [Deutsch](./docs/readme/README_de.md) |
+| **Выбран** | [English](docs/langs/en/README.md) | [Español](docs/langs/es/README.md) | [中文](docs/langs/zh/README.md) | [Français](docs/langs/fr/README.md) | [Deutsch](docs/langs/de/README.md) |
 
 `yaleksandr89/oauth2-yandex` — provider-клиент Yandex ID для
 [`league/oauth2-client`](https://oauth2-client.thephpleague.com/).
@@ -27,7 +27,7 @@
 Перед подключением пакета зарегистрируйте OAuth-приложение, настройте Redirect URI
 и выберите необходимые права:
 
-[Регистрация приложения в Яндекс OAuth](./docs/guides/yandex-oauth-application.md)
+[Регистрация приложения в Яндекс OAuth](docs/langs/ru/guides/yandex-oauth-application.md)
 
 ## Установка
 
@@ -52,13 +52,27 @@ $provider = new Yandex([
 Храните `Client ID` и `Client Secret` в конфигурации или переменных окружения.
 Не добавляйте `Client Secret` в репозиторий.
 
+## Как работает OAuth2 Yandex
+
+```mermaid
+flowchart TD
+    A["Переход на Yandex ID"] --> B["Callback: проверка state"]
+    B --> C["Обмен code на токен"]
+    C --> D["Получение профиля"]
+    B -->|Ошибка| E["Обработка отказа"]
+    C -->|Ошибка| E
+    D -->|Ошибка| E
+```
+
+В сценарии Authorization Code Flow с PKCE приложение инициирует авторизацию, сохраняет `state` и PKCE verifier, проверяет `state` при возврате пользователя и восстанавливает verifier перед обменом кода. Provider `Yandex` использует `league/oauth2-client` для получения токена и передаёт его в заголовке `Authorization: OAuth` при запросе профиля. `YandexResourceOwner` предоставляет типизированные данные; создание локальной сессии и обработка ошибок остаются ответственностью приложения.
+
 ## Использование
 
 Полный нативный пример показывает redirect на Yandex, проверку `state`, PKCE,
 обработку callback, получение профиля, дополнительные параметры авторизации
 и обновление токена:
 
-[Нативное использование с `league/oauth2-client`](./docs/guides/native-usage.md)
+[Нативное использование с `league/oauth2-client`](docs/langs/ru/guides/native-usage.md)
 
 ## Symfony и KnpUOAuth2ClientBundle
 
@@ -66,7 +80,7 @@ $provider = new Yandex([
 `knpuniversity/oauth2-client-bundle`. Отдельная инструкция включает конфигурацию
 клиента, запуск авторизации, получение токена и профиля:
 
-[Интеграция с Symfony и KnpUOAuth2ClientBundle](./docs/integrations/symfony-knpu-oauth2-client-bundle.md)
+[Интеграция с Symfony и KnpUOAuth2ClientBundle](docs/langs/ru/integrations/symfony-knpu-oauth2-client-bundle.md)
 
 ## Доступные методы
 
@@ -74,7 +88,7 @@ $provider = new Yandex([
 `YandexResourceOwner`, `YandexAvatar`, `YandexPhone`, а также enum-типы
 `YandexSex` и `YandexAvatarSize`:
 
-[Справочник публичного API](./docs/reference/api.md)
+[Справочник публичного API](docs/langs/ru/reference/api.md)
 
 ## Размеры аватара
 

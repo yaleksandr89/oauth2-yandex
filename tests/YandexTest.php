@@ -7,6 +7,7 @@ namespace Yaleksandr\OAuth2\Client\Tests;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
+use InvalidArgumentException;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\TestCase;
@@ -110,7 +111,7 @@ final class YandexTest extends TestCase
         ]));
 
         $exception = self::captureIdentityProviderException(
-            static fn () => $provider->getAccessToken('authorization_code', ['code' => 'bad-code']),
+            static fn() => $provider->getAccessToken('authorization_code', ['code' => 'bad-code']),
         );
 
         self::assertSame('The authorization code is invalid or expired.', $exception->getMessage());
@@ -125,7 +126,7 @@ final class YandexTest extends TestCase
         ]));
 
         $exception = self::captureIdentityProviderException(
-            static fn () => $provider->getResourceOwner(new AccessToken(['access_token' => 'token'])),
+            static fn() => $provider->getResourceOwner(new AccessToken(['access_token' => 'token'])),
         );
 
         self::assertSame('Service Unavailable', $exception->getMessage());
@@ -140,7 +141,7 @@ final class YandexTest extends TestCase
         ]));
 
         $exception = self::captureIdentityProviderException(
-            static fn () => $provider->getResourceOwner(new AccessToken(['access_token' => 'token'])),
+            static fn() => $provider->getResourceOwner(new AccessToken(['access_token' => 'token'])),
         );
 
         self::assertSame('temporarily unavailable', $exception->getMessage());
@@ -155,7 +156,7 @@ final class YandexTest extends TestCase
         ]));
 
         $exception = self::captureIdentityProviderException(
-            static fn () => $provider->getResourceOwner(new AccessToken(['access_token' => 'token'])),
+            static fn() => $provider->getResourceOwner(new AccessToken(['access_token' => 'token'])),
         );
 
         self::assertSame('The OAuth token is invalid.', $exception->getMessage());
@@ -174,7 +175,7 @@ final class YandexTest extends TestCase
         ]));
 
         $exception = self::captureIdentityProviderException(
-            static fn () => $provider->getAccessToken('authorization_code', ['code' => 'bad-code']),
+            static fn() => $provider->getAccessToken('authorization_code', ['code' => 'bad-code']),
         );
 
         self::assertSame('invalid_request', $exception->getMessage());
@@ -183,7 +184,7 @@ final class YandexTest extends TestCase
         $token = self::createStub(\League\OAuth2\Client\Token\AccessTokenInterface::class);
         $token->method('getToken')->willReturn('');
 
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $provider->getHeaders($token);
     }
 
@@ -195,19 +196,19 @@ final class YandexTest extends TestCase
 
     private static function provider(MockHandler $mock): Yandex
     {
-        return new Yandex(
-            [
-                'clientId' => 'client-id',
-                'clientSecret' => 'client-secret',
-                'redirectUri' => 'https://client.example/callback',
-            ],
-            [
-                'httpClient' => new Client([
-                    'handler' => $mock,
-                    'http_errors' => false,
-                ]),
-            ],
-        );
+        $options = [
+            'clientId' => 'client-id',
+            'clientSecret' => 'client-secret',
+            'redirectUri' => 'https://client.example/callback',
+        ];
+        $collaborators = [
+            'httpClient' => new Client([
+                'handler' => $mock,
+                'http_errors' => false,
+            ]),
+        ];
+
+        return new Yandex($options, $collaborators);
     }
 
     /**

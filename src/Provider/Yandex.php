@@ -9,12 +9,13 @@ use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Token\AccessToken;
 use League\OAuth2\Client\Token\AccessTokenInterface;
+use Override;
 use Psr\Http\Message\ResponseInterface;
 use UnexpectedValueException;
 
 final class Yandex extends AbstractProvider
 {
-    #[\Override]
+    #[Override]
     public function getBaseAuthorizationUrl(): string
     {
         return 'https://oauth.yandex.com/authorize';
@@ -23,13 +24,13 @@ final class Yandex extends AbstractProvider
     /**
      * @param array<string, mixed> $params
      */
-    #[\Override]
+    #[Override]
     public function getBaseAccessTokenUrl(array $params): string
     {
         return 'https://oauth.yandex.com/token';
     }
 
-    #[\Override]
+    #[Override]
     public function getResourceOwnerDetailsUrl(AccessToken $token): string
     {
         return 'https://login.yandex.ru/info';
@@ -38,7 +39,7 @@ final class Yandex extends AbstractProvider
     /**
      * @return list<string>
      */
-    #[\Override]
+    #[Override]
     protected function getDefaultScopes(): array
     {
         return [];
@@ -48,7 +49,7 @@ final class Yandex extends AbstractProvider
      * @param array<string, mixed> $options
      * @return array<string, mixed>
      */
-    #[\Override]
+    #[Override]
     protected function getAuthorizationParameters(array $options): array
     {
         $parentParameters = parent::getAuthorizationParameters($options);
@@ -77,7 +78,7 @@ final class Yandex extends AbstractProvider
      * @param array<string, mixed>|scalar|null $data
      * @throws IdentityProviderException
      */
-    #[\Override]
+    #[Override]
     protected function checkResponse(ResponseInterface $response, mixed $data): void
     {
         $statusCode = $response->getStatusCode();
@@ -97,7 +98,7 @@ final class Yandex extends AbstractProvider
     /**
      * @param array<string, mixed> $response
      */
-    #[\Override]
+    #[Override]
     protected function createResourceOwner(array $response, AccessToken $token): YandexResourceOwner
     {
         return new YandexResourceOwner($response);
@@ -106,7 +107,7 @@ final class Yandex extends AbstractProvider
     /**
      * @return array{Accept: string}
      */
-    #[\Override]
+    #[Override]
     protected function getDefaultHeaders(): array
     {
         return ['Accept' => 'application/json'];
@@ -115,7 +116,7 @@ final class Yandex extends AbstractProvider
     /**
      * @return array{Authorization: string}
      */
-    #[\Override]
+    #[Override]
     protected function getAuthorizationHeaders(mixed $token = null): array
     {
         if ($token instanceof AccessTokenInterface) {
@@ -138,12 +139,12 @@ final class Yandex extends AbstractProvider
             foreach (['error_description', 'error'] as $field) {
                 $value = $data[$field] ?? null;
 
-                if (is_scalar($value) && trim((string)$value) !== '') {
-                    return (string)$value;
+                if (is_scalar($value) && trim((string) $value) !== '') {
+                    return (string) $value;
                 }
             }
-        } elseif (is_scalar($data) && trim((string)$data) !== '') {
-            return (string)$data;
+        } elseif (is_scalar($data) && trim((string) $data) !== '') {
+            return (string) $data;
         }
 
         $reason = trim($response->getReasonPhrase());
