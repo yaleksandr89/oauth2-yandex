@@ -33,7 +33,7 @@ body:
     attributes:
       label: PHP version / Версия PHP
       description: Specify the exact PHP version for runtime/provider problems; it may be omitted for documentation-only issues. / Для runtime/provider-проблем укажите точную версию PHP; для ошибки только в документации поле можно оставить пустым.
-      placeholder: "8.3.x, 8.4.x or 8.5.x / 8.3.x, 8.4.x или 8.5.x"
+      placeholder: "8.3.x, 8.4.x, 8.5.x, 8.6.x"
 
   - type: input
     id: package-version

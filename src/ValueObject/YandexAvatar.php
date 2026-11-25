@@ -36,7 +36,7 @@ final readonly class YandexAvatar
         $avatarId = implode(
             '/',
             array_map(
-                static fn (string $part): string => rawurlencode($part),
+                static fn(string $part): string => rawurlencode($part),
                 explode('/', $this->id),
             ),
         );

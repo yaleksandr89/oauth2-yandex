@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Yaleksandr\OAuth2\Client\Provider;
 
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
+use Override;
 use UnexpectedValueException;
 use Yaleksandr\OAuth2\Client\ValueObject\YandexAvatar;
 use Yaleksandr\OAuth2\Client\ValueObject\YandexAvatarSize;
@@ -35,7 +36,7 @@ final readonly class YandexResourceOwner implements ResourceOwnerInterface
         $this->sex = self::createSex($response);
     }
 
-    #[\Override]
+    #[Override]
     public function getId(): string
     {
         return $this->id;
@@ -109,7 +110,7 @@ final readonly class YandexResourceOwner implements ResourceOwnerInterface
 
         return array_values(array_filter(
             $emails,
-            static fn (mixed $email): bool => is_string($email) && trim($email) !== '',
+            static fn(mixed $email): bool => is_string($email) && trim($email) !== '',
         ));
     }
 
@@ -141,7 +142,7 @@ final readonly class YandexResourceOwner implements ResourceOwnerInterface
     /**
      * @return array<string, mixed>
      */
-    #[\Override]
+    #[Override]
     public function toArray(): array
     {
         return $this->response;
